@@ -4,7 +4,7 @@
 
 ;; Author: Chetan Koneru <kchetan.hadoop@gmail.com>
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "29.1"))
+
 ;; Keywords: languages, tree-sitter
 ;; URL: https://github.com/ChetanKoneru/gcf-mode
 
