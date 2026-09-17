@@ -6,7 +6,7 @@
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: languages, tree-sitter
-;; URL: https://github.com/CsBigDataHub/gcf-mode
+;; URL: https://github.com/ChetanKoneru/gcf-mode
 
 ;; This file is not part of GNU Emacs.
 ;;
