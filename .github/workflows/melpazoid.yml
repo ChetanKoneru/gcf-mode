@@ -35,7 +35,7 @@ jobs:
       - name: Run melpazoid
         env:
           LOCAL_REPO: ${{ github.workspace }}
-          RECIPE: '(gcf-mode :fetcher github :repo "CsBigDataHub/gcf-mode")'
+          RECIPE: '(gcf-mode :fetcher github :repo "ChetanKoneru/gcf-mode")'
           WARN_IS_ERROR: "false"
           EXIST_OK: "false"
         run: |
