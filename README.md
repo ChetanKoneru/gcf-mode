@@ -41,7 +41,7 @@ For a checkout, add its directory to `load-path` and load the library:
 Emacs 29+ users may also install the checkout through `package-vc`:
 
 ```elisp
-(package-vc-install "https://github.com/blackwell-systems/gcf-mode")
+(package-vc-install "https://github.com/ChetanKoneru/gcf-mode")
 ```
 
 ## Install the grammar
