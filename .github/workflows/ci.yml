@@ -1,0 +1,50 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Emacs ${{ matrix.emacs }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        emacs: ["29.4", "30.1", "31.1"]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: purcell/setup-emacs@34c6ded44899fd1bf74d2889558befd1750e61a7
+        with:
+          version: ${{ matrix.emacs }}
+      - name: Compile, check documentation, and run ERT
+        run: make check
+
+  grammar-integration:
+    name: Tree-sitter grammar integration (Emacs 29.4)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: purcell/setup-emacs@34c6ded44899fd1bf74d2889558befd1750e61a7
+        with:
+          version: "29.4"
+      - name: Compile and install the pinned GCF grammar
+        run: >-
+          emacs -Q --batch -L .
+          --eval "(progn (require 'gcf-mode)
+          (treesit-install-language-grammar 'gcf)
+          (unless (treesit-ready-p 'gcf)
+          (error \"GCF grammar installation failed\")))"
+      - name: Run the grammar-backed tests
+        run: make check
