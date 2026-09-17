@@ -1,4 +1,4 @@
-;;; gcf-cli.el --- Convert JSON and GCF through gcf-python -*- lexical-binding: t; -*-
+;;; gcf-cli.el --- CLI conversion support for gcf-mode -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2026
 
@@ -27,9 +27,10 @@
 
 ;;; Commentary:
 
-;; This library provides safe, synchronous buffer and region commands backed
-;; by the `gcf' executable installed by the gcf-python package.  The generic
-;; profile is used because it accepts arbitrary JSON values:
+;; This library is a lazily loaded part of the gcf-mode package.  It provides
+;; safe, synchronous buffer and region commands backed by the `gcf' executable
+;; installed by the gcf-python package.  The generic profile is used because
+;; it accepts arbitrary JSON values:
 ;; `gcf encode-generic' and `gcf decode-generic' both read stdin and write
 ;; stdout.
 
@@ -39,7 +40,7 @@
 
 (defgroup gcf-cli nil
   "Convert JSON and GCF using the gcf-python command-line interface."
-  :group 'tools
+  :group 'gcf
   :prefix "gcf-cli-")
 
 (defcustom gcf-cli-executable "gcf"

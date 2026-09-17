@@ -30,10 +30,26 @@
 ;; `gcf-ts-mode' is a major mode for Graph Compact Format (GCF) files.  It
 ;; uses the tree-sitter grammar from `gcf-ts-mode--grammar-source'.  To install
 ;; the grammar, run `treesit-install-language-grammar' and choose `gcf'.
+;;
+;; This package also includes lazily loaded commands for converting JSON to
+;; GCF and back with the gcf-python executable.  See
+;; `gcf-cli-json-to-gcf' and `gcf-cli-gcf-to-json'.
 
 ;;; Code:
 
 (require 'treesit)
+
+;; Keep optional process integration out of the major mode's load path while
+;; still exposing it when this repository is used without generated package
+;; autoloads.
+(autoload 'gcf-cli-json-to-gcf "gcf-cli"
+  "Convert JSON in the active region or current buffer to generic GCF." t)
+(autoload 'gcf-cli-gcf-to-json "gcf-cli"
+  "Convert generic GCF in the active region or current buffer to JSON." t)
+(autoload 'gcf-cli-encode "gcf-cli"
+  "Convert JSON in the active region or current buffer to generic GCF." t)
+(autoload 'gcf-cli-decode "gcf-cli"
+  "Convert generic GCF in the active region or current buffer to JSON." t)
 
 (defgroup gcf nil
   "Major mode for editing Graph Compact Format files."
